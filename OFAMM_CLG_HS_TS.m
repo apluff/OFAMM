@@ -26,6 +26,7 @@ DialogTitle = 'Select the mask image';
 FullFileName = fullfile(PathName, [FileName, ExtName]);
 handles.ImgSeq = imreadalltiff(FullFileName);
 handles.ImgSeqLoaded = 1;
+
 % Lifted dim and frame calculations from OFAMM_v1
 [dim1,dim2,nFrames] = size(handles.ImgSeq);
 handles.dim1 = dim1;
@@ -41,7 +42,7 @@ if handles.ImgSeqLoaded
     runCLG = 1;
     % try runCLG = get(handles.runCLG,'value'); catch, try runCLG = handles.runCLG; end; end
     % HS
-    runHS = 1;
+    runHS = 0;
     % try runHS = get(handles.runHS,'value'); catch, try runHS = handles.runHS; end; end
     % TS
     runTS = 0;
@@ -199,7 +200,7 @@ if handles.ImgSeqLoaded
             if ~exist(handles.SavePathName,'dir')
                 mkdir(handles.SavePathName);
             end
-            SaveFullFileName = [handles.SavePathName,'\uvResults.mat'];
+            SaveFullFileName = [handles.SavePathName,'\OpticFlowResults.mat'];
             mFileuvResults = matfile(SaveFullFileName,'Writable',true);
             mFileuvResults.uvCLG = handles.uvCLG;
             mFileuvResults.FstartOFcalculated =  handles.FstartOFcalculated;
@@ -223,7 +224,7 @@ if handles.ImgSeqLoaded
             if ~exist(handles.SavePathName,'dir')
                 mkdir(handles.SavePathName);
             end
-            SaveFullFileName = [handles.SavePathName,'\uvResults.mat'];
+            SaveFullFileName = [handles.SavePathName,'\OpticFlowResults.mat'];
             mFileuvResults = matfile(SaveFullFileName,'Writable',true);
             mFileuvResults.uvHS = handles.uvHS;
             mFileuvResults.FstartOFcalculated =  handles.FstartOFcalculated;
@@ -243,7 +244,7 @@ if handles.ImgSeqLoaded
             if ~exist(handles.SavePathName,'dir')
                 mkdir(handles.SavePathName);
             end
-            SaveFullFileName = [handles.SavePathName,'\uvResults.mat'];
+            SaveFullFileName = [handles.SavePathName,'\OpticFlowResults.mat'];
             mFileuvResults = matfile(SaveFullFileName,'Writable',true);
             mFileuvResults.uvTS = handles.uvTS;
             mFileuvResults.tTS = handles.tTS;
