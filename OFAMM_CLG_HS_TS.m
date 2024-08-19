@@ -39,10 +39,10 @@ if ~isfield(handles,'ImgSeqLoaded')
 end
 if handles.ImgSeqLoaded
     % CLG
-    runCLG = 1;
+    runCLG = 0;
     % try runCLG = get(handles.runCLG,'value'); catch, try runCLG = handles.runCLG; end; end
     % HS
-    runHS = 0;
+    runHS = 1;
     % try runHS = get(handles.runHS,'value'); catch, try runHS = handles.runHS; end; end
     % TS
     runTS = 0;
