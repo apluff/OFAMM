@@ -226,8 +226,8 @@ if handles.ImgSeqLoaded
                 mkdir(handles.SavePathName);
             end
             % SaveFullFileName = [handles.SavePathName,'/OpticFlowResults.mat']; % Original
-            SaveFullFileName = output_path;
-            % SaveFullFileName = handles.SavePathName;
+            % SaveFullFileName = output_path;
+            SaveFullFileName = handles.SavePathName;
             mFileuvResults = matfile(SaveFullFileName,'Writable',true);
             mFileuvResults.uvHS = handles.uvHS;
             mFileuvResults.FstartOFcalculated =  handles.FstartOFcalculated;
