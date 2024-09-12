@@ -200,7 +200,8 @@ if handles.ImgSeqLoaded
             if ~exist(handles.SavePathName,'dir')
                 mkdir(handles.SavePathName);
             end
-            SaveFullFileName = [handles.SavePathName,'\OpticFlowResults.mat'];
+            % SaveFullFileName = [handles.SavePathName,'\OpticFlowResults.mat']; % Original
+            SaveFullFileName = handles.SavePathName;
             mFileuvResults = matfile(SaveFullFileName,'Writable',true);
             mFileuvResults.uvCLG = handles.uvCLG;
             mFileuvResults.FstartOFcalculated =  handles.FstartOFcalculated;
@@ -224,7 +225,9 @@ if handles.ImgSeqLoaded
             if ~exist(handles.SavePathName,'dir')
                 mkdir(handles.SavePathName);
             end
-            SaveFullFileName = [handles.SavePathName,'\OpticFlowResults.mat'];
+            % SaveFullFileName = [handles.SavePathName,'/OpticFlowResults.mat']; % Original
+            SaveFullFileName = output_path;
+            % SaveFullFileName = handles.SavePathName;
             mFileuvResults = matfile(SaveFullFileName,'Writable',true);
             mFileuvResults.uvHS = handles.uvHS;
             mFileuvResults.FstartOFcalculated =  handles.FstartOFcalculated;
@@ -233,18 +236,19 @@ if handles.ImgSeqLoaded
             mFileuvResults.HSparams = HSparams;
             delete(mFileuvResults);
             % save HS parameters
-            fileID = fopen([handles.SavePathName, '\HS Parameters.txt'],'w');
-            fprintf(fileID,'%13s\r\n','HS Parameters');
-            fprintf(fileID,'%20s %15s\r\n\r\n','Parameter','Value');
-            fprintf(fileID,'%20s %15.3f\r\n','alpha',HSparams.alpha);
-            fprintf(fileID,'%20s %15d\r\n','iterations',HSparams.iterations);
-            fclose(fileID);
+%             fileID = fopen([handles.SavePathName, '\HS Parameters.txt'],'w');
+%             fprintf(fileID,'%13s\r\n','HS Parameters');
+%             fprintf(fileID,'%20s %15s\r\n\r\n','Parameter','Value');
+%             fprintf(fileID,'%20s %15.3f\r\n','alpha',HSparams.alpha);
+%             fprintf(fileID,'%20s %15d\r\n','iterations',HSparams.iterations);
+%             fclose(fileID);
         end
         if runTS && saveTS
             if ~exist(handles.SavePathName,'dir')
                 mkdir(handles.SavePathName);
             end
-            SaveFullFileName = [handles.SavePathName,'\OpticFlowResults.mat'];
+            % SaveFullFileName = [handles.SavePathName,'\OpticFlowResults.mat']; % Original
+            SaveFullFileName = handles.SavePathName;
             mFileuvResults = matfile(SaveFullFileName,'Writable',true);
             mFileuvResults.uvTS = handles.uvTS;
             mFileuvResults.tTS = handles.tTS;
