@@ -4,7 +4,7 @@ function RunOpticalFlowAnalysisButton(input_path, output_path)
 % CLG
 handles.alphaCLG = 0.03;
 handles.ratioCLG = 0.5;
-handles.minWidthCLG = 32;
+handles.minWidthCLG = 16;
 handles.nOuterFPIterationsCLG = 7;
 handles.nInnerFPIterationsCLG = 1;
 handles.nSORIterationsCLG = 30;
@@ -39,10 +39,10 @@ if ~isfield(handles,'ImgSeqLoaded')
 end
 if handles.ImgSeqLoaded
     % CLG
-    runCLG = 0;
+    runCLG = 1;
     % try runCLG = get(handles.runCLG,'value'); catch, try runCLG = handles.runCLG; end; end
     % HS
-    runHS = 1;
+    runHS = 0;
     % try runHS = get(handles.runHS,'value'); catch, try runHS = handles.runHS; end; end
     % TS
     runTS = 0;
@@ -201,7 +201,7 @@ if handles.ImgSeqLoaded
                 mkdir(handles.SavePathName);
             end
             % SaveFullFileName = [handles.SavePathName,'\OpticFlowResults.mat']; % Original
-            SaveFullFileName = handles.SavePathName;
+            SaveFullFileName = [output_path, FileName, '.mat'];
             mFileuvResults = matfile(SaveFullFileName,'Writable',true);
             mFileuvResults.uvCLG = handles.uvCLG;
             mFileuvResults.FstartOFcalculated =  handles.FstartOFcalculated;
@@ -210,16 +210,16 @@ if handles.ImgSeqLoaded
             mFileuvResults.CLGparams = CLGparams;
             delete(mFileuvResults);
             % save CLG parameters
-            fileID = fopen([handles.SavePathName, '\CLG Parameters.txt'],'w');
-            fprintf(fileID,'%13s\r\n','CLG Parameters');
-            fprintf(fileID,'%20s %15s\r\n\r\n','Parameter','Value');
-            fprintf(fileID,'%20s %15.3f\r\n','alpha',CLGparams.alpha);
-            fprintf(fileID,'%20s %15.2f\r\n','ratio',CLGparams.ratio);
-            fprintf(fileID,'%20s %15d\r\n','minWidth',CLGparams.minWidth);
-            fprintf(fileID,'%20s %15d\r\n','nOuterFPIterations',CLGparams.nOuterFPIterations);
-            fprintf(fileID,'%20s %15d\r\n','nInnerFPIterations',CLGparams.nInnerFPIterations);
-            fprintf(fileID,'%20s %15d\r\n','nSORIterations',CLGparams.nSORIterations);
-            fclose(fileID);
+            % fileID = fopen([handles.SavePathName, '\CLG Parameters.txt'],'w');
+            % fprintf(fileID,'%13s\r\n','CLG Parameters');
+            % fprintf(fileID,'%20s %15s\r\n\r\n','Parameter','Value');
+            % fprintf(fileID,'%20s %15.3f\r\n','alpha',CLGparams.alpha);
+            % fprintf(fileID,'%20s %15.2f\r\n','ratio',CLGparams.ratio);
+            % fprintf(fileID,'%20s %15d\r\n','minWidth',CLGparams.minWidth);
+            % fprintf(fileID,'%20s %15d\r\n','nOuterFPIterations',CLGparams.nOuterFPIterations);
+            % fprintf(fileID,'%20s %15d\r\n','nInnerFPIterations',CLGparams.nInnerFPIterations);
+            % fprintf(fileID,'%20s %15d\r\n','nSORIterations',CLGparams.nSORIterations);
+            % fclose(fileID);
         end
         if runHS && saveHS
             if ~exist(handles.SavePathName,'dir')
