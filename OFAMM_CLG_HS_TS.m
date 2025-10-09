@@ -33,6 +33,8 @@ handles.dim1 = dim1;
 handles.dim2 = dim2;
 handles.nFrames = nFrames;
 
+disp("DEBUG: Optical flow analysis parameters set.")
+
 % Begin original code here
 if ~isfield(handles,'ImgSeqLoaded')
     handles.ImgSeqLoaded = 0;
@@ -125,12 +127,14 @@ if handles.ImgSeqLoaded
 %             [im1, im2] = normalize_two_consequtive_frames(im1,im2,handles.idxMask);
             % CLG
             if runCLG
+                disp("DEBUG: Running CLG algorithm...")
                 tic
                 [u, v, ~] = Coarse2FineTwoFrames(im1,im2,para);
                 t = toc;
                 handles.tCLG = handles.tCLG+t;
                 handles.uvCLG(:,:,idx) = (u +1i*v);
                 handles.uvCLGcalculated = 1;
+                disp("DEBUG: CLG algorithm complete...")
             end
             % HS
             if runHS
@@ -176,6 +180,7 @@ if handles.ImgSeqLoaded
         % try SaveOF = handles.SaveOF; catch; end
     % end
     if SaveOF
+        disp("DEBUG: Preparing to save file...")
         saveCLG = SaveOF; saveHS = SaveOF; saveTS = SaveOF;
         try
             saveCLG = get(handles.CLGsave,'value');
@@ -201,6 +206,7 @@ if handles.ImgSeqLoaded
                 mkdir(handles.SavePathName);
             end
             % SaveFullFileName = [handles.SavePathName,'\OpticFlowResults.mat']; % Original
+            disp("DEBUG: Saving file...")
             SaveFullFileName = [output_path, FileName, '.mat'];
             mFileuvResults = matfile(SaveFullFileName,'Writable',true);
             mFileuvResults.uvCLG = handles.uvCLG;
@@ -209,6 +215,7 @@ if handles.ImgSeqLoaded
             mFileuvResults.tCLG = handles.tCLG;
             mFileuvResults.CLGparams = CLGparams;
             delete(mFileuvResults);
+            disp("DEBUG: File saved...")
             % save CLG parameters
             % fileID = fopen([handles.SavePathName, '\CLG Parameters.txt'],'w');
             % fprintf(fileID,'%13s\r\n','CLG Parameters');
