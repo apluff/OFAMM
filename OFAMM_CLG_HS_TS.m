@@ -114,6 +114,7 @@ if handles.ImgSeqLoaded
         nFramesTodoOF = FendOF-FstartOF;
         handles.tCLG = 0;
         handles.tHS = 0;
+        disp("DEBUG: Running CLG algorithm...")
         for idx = FstartOF:FendOF-1
             % if runCLG && runHS
                 % waitbar((idx-FstartOF+1)/nFramesTodoOF,hWaitBar,sprintf('Processing frame %d of %d with CLG and HS',idx-FstartOF+1,nFramesTodoOF));
@@ -127,14 +128,12 @@ if handles.ImgSeqLoaded
 %             [im1, im2] = normalize_two_consequtive_frames(im1,im2,handles.idxMask);
             % CLG
             if runCLG
-                disp("DEBUG: Running CLG algorithm...")
                 tic
                 [u, v, ~] = Coarse2FineTwoFrames(im1,im2,para);
                 t = toc;
                 handles.tCLG = handles.tCLG+t;
                 handles.uvCLG(:,:,idx) = (u +1i*v);
                 handles.uvCLGcalculated = 1;
-                disp("DEBUG: CLG algorithm complete...")
             end
             % HS
             if runHS
@@ -150,6 +149,7 @@ if handles.ImgSeqLoaded
         handles.FendOFcalculated = FendOF;
         % close(hWaitBar);
     end
+    disp("DEBUG: CLG algorithm complete...")
     % params and allocation for TS and run TS if applicable
     if runTS
         TSparams_default.CorrWinPixels = 3;
