@@ -207,7 +207,7 @@ if handles.ImgSeqLoaded
             end
             % SaveFullFileName = [handles.SavePathName,'\OpticFlowResults.mat']; % Original
             disp("DEBUG: Saving file...")
-            SaveFullFileName = [output_path, FileName, '.mat'];
+            SaveFullFileName = [output_path, '/', FileName, '.mat'];
             mFileuvResults = matfile(SaveFullFileName,'Writable',true);
             mFileuvResults.uvCLG = handles.uvCLG;
             mFileuvResults.FstartOFcalculated =  handles.FstartOFcalculated;
