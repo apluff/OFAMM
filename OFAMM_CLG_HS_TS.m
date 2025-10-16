@@ -1,13 +1,13 @@
-function RunOpticalFlowAnalysisButton(input_path, output_path)
+function RunOpticalFlowAnalysisButton(input_path, output_path, ALPHACLG, RATIOCLG, MINWIDTHCLG, OUTERFPICLG, INNERFPICLG, SORICLG)
 
 % Optical flow parameters
 % CLG
-handles.alphaCLG = 0.03;
-handles.ratioCLG = 0.5;
-handles.minWidthCLG = 16;
-handles.nOuterFPIterationsCLG = 7;
-handles.nInnerFPIterationsCLG = 1;
-handles.nSORIterationsCLG = 30;
+handles.alphaCLG = ALPHACLG;
+handles.ratioCLG = RATIOCLG;
+handles.minWidthCLG = MINWIDTHCLG;
+handles.nOuterFPIterationsCLG = OUTERFPICLG;
+handles.nInnerFPIterationsCLG = INNERFPICLG;
+handles.nSORIterationsCLG = SORICLG;
 % HS
 handles.alphaHS = 0.35;
 handles.IterationsHS = 2000;
